@@ -1,0 +1,125 @@
+version: "3.1"
+rules:
+- rule: Handle greeting and listen
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: action_listen
+
+- rule: after details utter details
+  steps:
+  - intent: details_collecting
+  - action: utter_greet_response
+
+- rule: affirm and proceed
+  steps:
+  - intent: affirm
+  - action: utter_ask_for_location
+
+- rule: Ask for booking type after location
+  condition:
+  - slot_was_set:
+      - change_type: null  # Only trigger this rule if change_type is not set (i.e., not in modification mode)
+  steps:
+  - intent: choose_location
+  - action: utter_ask_booking_type
+
+#- rule: Ask for number of people
+#  steps:
+#  - intent: choose_booking_type
+#    entities:
+#      - booking_type: "party hall"
+ # - action: utter_ask_number_of_people
+
+- rule: Ask for number of people 
+  condition:
+  - slot_was_set:
+      - change_type: null 
+  steps:
+  - intent: choose_booking_type
+    entities:
+      - booking: "family area"
+  - action: utter_ask_number_of_people
+
+- rule: Ask for expected time after number of people
+  condition:
+  - slot_was_set:
+      - change_type: null 
+  steps:
+  - intent: quantity_details
+    entities:
+      - people: "50"
+  - action: utter_ask_expected_time
+
+- rule: summarising order
+  steps:
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+
+# - rule: Confirm location and booking
+#   steps:
+#   - intent: provide_details
+#     entities:
+#       - expected_time: "7 PM"
+#   #- action: utter_confirm_location
+#   - action: utter_booking_summary
+
+
+
+- rule: Handling cancel 
+  steps:
+  - intent: cancel_booking
+  - action: utter_booking_cancelled
+  - action: utter_goodbye
+
+- rule: handle modification 
+  steps:
+  - intent: modify_booking
+  - action: action_reset_or_modify_booking
+
+
+- rule: Confirm booking and thank user
+  steps:
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+
+- rule: Changes after resetting number of people
+  steps:
+  - action: utter_ask_new_number_of_people
+  - intent: new_people
+    entities:
+      - people: "40"
+  - action: utter_booking_summary
+
+
+# - rule: handle location change
+#   steps:
+#   - intent: provide_details
+#     entities:
+#       - change_type: "location"
+#   - action: utter_ask_new_location
+
+# - rule: handle modification of number of people #neww addings
+#   steps:
+#   - intent: provide_details
+#     entities:
+#       - change_type: "number_of_people"
+#   - action: utter_ask_new_number_of_people
+
+
+
+
+  
+
+
+
+
+
+
+

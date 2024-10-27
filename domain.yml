@@ -1,0 +1,129 @@
+version: "3.1"
+
+intents:
+  - greet
+  - affirm
+  #- ask_for_location
+  - choose_location
+  - choose_booking_type
+  #- provide_details
+  - quantity_details
+  - timings
+  - confirm_booking
+  - goodbye
+  - cancel_booking
+  - modify_booking
+  - new_timing
+  - new_people
+  - details_collecting
+  - new_location
+
+entities:
+  - location
+  - booking
+  - people
+  - time
+  - change_type
+  - name
+  - phone_number
+
+slots:
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+  phone_number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone_number
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: location
+  booking:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: booking
+  people:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: people
+  time:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: time
+  change_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: change_type
+
+
+responses:
+  utter_greet:
+   - text: "Hello! Welcome to Abu's DukhaaN. May I know your name and contact details for proceeding with the booking?"
+
+  utter_greet_response:
+   - text: "Thank you, {name}. Your phone number is {phone_number}. Is that correct?"
+
+  utter_ask_for_location:
+    - text: "We have restaurants in the following locations: Thalassery, Kannur, Manjeri, Kakkanad, and Kozhikode. Where would you like to book?"
+  
+  utter_confirm_location:
+    - text: "Great! You've chosen the {location} location!"
+
+  utter_ask_booking_type:
+    - text: "What type of booking would you like? Party Hall, Dine-in , or Family Area?"
+
+  utter_ask_number_of_people:
+    - text: "How many people will be joining?"
+
+  utter_ask_expected_time:
+    - text: "At what time would you like to make the booking?"
+
+  utter_booking_summary:
+    - text: "You have chosen to book a {booking} at {location} for {people} at {time}. Is that correct?"
+
+  utter_thank_you:
+    - text: "Thank you! Your booking has been confirmed. Have a great day!"  
+
+  utter_goodbye:
+    - text: "Thank you for using our service! Goodbye!"
+
+  utter_booking_cancelled:      # New response for cancelation
+   - text: "Your booking has been cancelled."
+
+  # utter_ask_change_type:        # New response to ask what they want to modify
+  #   - text: "What would you like to change? You can modify the location, booking type, number of people, or expected time."
+
+  utter_ask_new_location:       # Response if they want to change the location
+    - text: "Which location would you like to change to?"
+
+  utter_ask_new_booking_type:   # Response if they want to change the booking type
+    - text: "What new booking type would you prefer?"
+
+  utter_ask_new_number_of_people:   # Response if they want to change the number of people
+    - text: "How many people do you want to change the booking to?"
+
+  utter_ask_new_expected_time:      # Response if they want to change the time
+    - text: "What is the new expected time?"
+
+  # utter_modified_summary:
+  #   - text: "Your booking has been updated. Here is the new summary: {booking_type} at {location} for {number_of_people} people at {expected_time}. Is this correct?"
+
+actions:
+ - action_reset_or_modify_booking
+ - action_save_booking
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
