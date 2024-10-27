@@ -1,0 +1,253 @@
+version: "3.1"
+
+stories:
+- story: book_party_hall
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Alexa'
+      - phone_number: "8765 2345"
+  - slot_was_set:
+      - name: "Alexa"
+      - phone_number: "8765 2345"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "party hall"
+  - slot_was_set:
+    - booking: "party hall"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "50"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you 
+
+- story: book_family_area
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Rekha'
+      - phone_number: "2365 2345"
+  - slot_was_set:
+      - name: "Rekha"
+      - phone_number: "2365 2345"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "family area"
+  - slot_was_set:
+    - booking: "family area"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "10"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "6:30 PM"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+#- story: Dealing denial
+#  steps:
+#  - intent: deny
+#  - action: action_reset_slots
+
+- story: dine-in
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Ram'
+      - phone_number: "6793 5162"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "dine-in"
+  - slot_was_set:
+    - booking: "dine-in"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "10"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+- story: cancel_booking
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Rexa'
+      - phone_number: "86532011"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "party hall"
+  - slot_was_set:
+    - booking: "party hall"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "50"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+  - intent: cancel_booking
+  - action: utter_booking_cancelled
+  - action: utter_goodbye
+ 
+  
+  
+- story: modify_booking_expected_time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Habeeb'
+      - phone_number: "98765432"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "party hall"
+  - slot_was_set:
+    - booking: "party hall"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "50"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+  - intent: modify_booking
+    entities:
+      - entity: change_type
+        value: "time"
+  - action: action_reset_or_modify_booking
+  - intent: new_timing
+    entities:
+      - time: "8 PM"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+- story: modification_for_number_of_people
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: details_collecting
+    entities:
+      - name: 'Alexa'
+      - phone_number: "87652345"
+  - action: utter_greet_response
+  - intent: affirm
+  - action: utter_ask_for_location
+  - intent: choose_location
+    entities:
+      - location: "Thalassery"
+  - action: utter_ask_booking_type
+  - intent: choose_booking_type
+    entities:
+      - booking: "party hall"
+  - slot_was_set:
+    - booking: "party hall"
+  - action: utter_ask_number_of_people
+  - intent: quantity_details
+    entities:
+      - people: "50"
+  - action: utter_ask_expected_time
+  - intent: timings
+    entities:
+      - time: "7 PM"
+  - action: utter_booking_summary
+  - intent: modify_booking
+    entities:
+      - entity: change_type
+        value: "people"
+  - action: action_reset_or_modify_booking
+  - intent: new_people
+    entities:
+      - people: "40"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+
+- story: modify_location_only
+  steps:
+  - intent: modify_booking
+    entities:
+      - entity: change_type
+        value: "location"
+  - action: action_reset_or_modify_booking
+  - action: action_listen
+  - intent: new_location
+    entities:
+      - location: "Kakkanad"
+  - action: utter_booking_summary
+  - intent: confirm_booking
+  - action: action_save_booking
+  - action: utter_thank_you
+
+
+
+
+

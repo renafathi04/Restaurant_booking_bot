@@ -1,0 +1,172 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Hi
+    - Hello
+    - Hey there
+    - Hi there
+    - Good morning
+    - Good evening
+
+- intent: affirm
+  examples: |
+    - yes
+    - that's correct
+    - yup
+    - yp 
+
+
+- intent: details_collecting
+  examples: |
+    - My name is [Naheem](name) and number is [9784 5686](phone_number)
+    - I am [John](name) and contact is [8769 4352](phone_number)
+    - I am [Jazz](name) and number is [9876 5432](phone_number)
+    - My name is [Alexa](name) and number is [6789 5432](phone_number)
+    - Name is [Sarah](name), phone number is [1234 5678](phone_number)
+    - I'm [David](name), and my contact is [8765 4321](phone_number)
+    - I am called [Ella](name) and my number is [9087 6543](phone_number)
+    - You can reach me, [Max](name), at [7654 3210](phone_number)
+    - This is [Emily](name), phone number [6574 8392](phone_number)
+
+  
+- intent: choose_location
+  examples: |
+    - I want to book at the [Thalassery](location) location
+    - Reserve at the [Kannur](location) restaurant
+    - I'd like to go to the [Manjeri](location) location
+    - Book a table at [Kakkanad](location)
+    - [Kozhikode](location) sounds good
+    - Let's book at [Kannur](location)
+
+- intent: quantity_details
+  examples: |
+    - For [5](people) people
+    - [50](people) people 
+    - It's for [3](people) people 
+    - The reservation is for [10](people) people
+
+- intent: timings
+  examples: |
+    - Around [9 PM](time)
+    - on [7 pm](time)
+    - Will be reaching by [8 AM](time)
+    - [6 PM](time)
+    - [6:00 PM](time)
+    - [6 pm](time)
+    - around [7 PM](time)
+    - at [9:00 PM](time)
+    - [9 P.M](time)
+    - on [7 PM](time)
+
+
+- intent: choose_booking_type
+  examples: |
+    - I want to book the [party hall](booking)
+    - I'd like to reserve the [family area](booking)
+    - I need a table for a [Dine-in](booking)
+    - Can I book the [party hall](booking)
+    - Reserve a table for a [dine in](booking)
+    - I want to book a [family area](booking)
+
+
+- intent: confirm_booking
+  examples: |
+    - Yes, that looks good
+    - Confirm the booking
+    - That's correct
+    - Yes, please
+    - That's fine
+    - Everything is correct
+
+
+- intent: cancel_booking 
+  examples: |
+   - No, I want to cancel booking
+   - No, cancel it
+   - I'd like to cancel the booking
+   - No, that's wrong
+   - No, something is incorrect , so cancel it
+
+- intent: modify_booking
+  examples: |
+   - I need to change [booking](change_type)
+   - I'd like to modify [location](change_type)
+   - Modify [people](change_type)
+   - Want to change [time](change_type) 
+   - change the [location](change_type)
+   - I need to change [booking](change_type)
+   - I'd like to modify [location](change_type)
+   - Modify [people](change_type)
+   - I want to change the [time](change_type)
+   - Change the [location](change_type)
+   - Can you modify the [people](change_type)?
+   - I'd like to update the [location](change_type)
+   - Change my [booking](change_type), please
+   - I need to adjust the [time](change_type)
+   - Can I switch the [location](change_type)?
+   - I want to modify the [people](change_type) in my booking
+   - Please update my [time](change_type)
+   - Can you change the [location](change_type) for me?
+   - Please adjust the [booking](change_type)
+   - I would like to change the [time](change_type) of my booking
+   - I'd like to switch the [people](change_type)
+   - Could you update my [location](change_type)?
+   - I need to modify the [time](change_type)
+   - Change the [booking](change_type) to party hall
+   - Switch the [location](change_type) to Thalassery
+   - Modify the [people](change_type) to 10
+
+- intent: goodbye
+  examples: |
+    - Bye
+    - Goodbye
+    - See you later
+    - Thanks, bye
+    - Talk to you later
+    - I have to go, bye
+
+- intent: new_timing
+  examples: |
+    - I would like to change the timing to [7 P.M](time)
+    - Change the time to [6 P.M](time)
+    - Modify the time to [8 P.M](time)
+    - We will reach at [7 P.M](time)
+    - Update the booking time to [9 P.M](time)
+    - Can I change the time to [7:30 P.M](time)?
+    - I need to move the time to [5 P.M](time)
+    - Adjust the time to [6:30 P.M](time)
+    - Please set the time to [8 P.M](time)
+    - I want to change the booking time to [7 P.M](time)
+
+- intent: new_people
+  examples: |
+    - I would like to change the number of people to [8](people)
+    - Change to [50](people)
+    - Modify to [12](people)
+    - There will be [8](people)
+    - Adjust the number of people to [10](people)
+    - Can you update it to [15](people)?
+    - I'd like to change the number to [5](people)
+    - Please modify the people count to [20](people)
+    - The new count will be [6](people)
+    - We will now have [4](people)
+
+- intent: new_location
+  examples: |
+    - Change my location to [Kannur](location)
+    - I would like to change my location to [Kakkanad](location)
+    - I would like to go to [Manjeri](location)
+    - Please update the location to [Kozhikode](location)
+    - Modify the location to [Thalassery](location)
+    - Can we switch the booking to [Kannur](location)?
+    - I want to move the location to [Kakkanad](location)
+    - Change the place to [Manjeri](location), please
+    - The new location should be [Thalassery](location)
+    - I need to update the location to [Kozhikode](location)
+
+# - regex:
+#     - name: name
+#       patterns:
+#         - "[A-Za-z]+"
